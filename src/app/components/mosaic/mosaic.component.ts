@@ -9,6 +9,8 @@ import {DataServiceService} from '../../services/data-service.service';
 })
 export class MosaicComponent {
 
+  selectedCatalogo: any;
+
   constructor(
     public _conService: ApiConectionService,
     public _dataService: DataServiceService
@@ -38,12 +40,16 @@ export class MosaicComponent {
     });
   }
 
-  descuento(id:number){
-    console.log("Id: ", id);
+  descuento(catalogo: any) {
+    this.selectedCatalogo = catalogo;
+    // Obtener el modal de Bootstrap por ID y mostrarlo
+    const modalElement = document.getElementById('exampleModal');
+    const modalInstance = new bootstrap.Modal(modalElement);
+    modalInstance.show();
   }
 
   accept() {
     console.log('Modal aceptado');
-    // Aquí puedes agregar la lógica adicional que necesites después de aceptar
+    // Aquí puedes agregar la lógica adicional||   que necesites después de aceptar
   }
 }
