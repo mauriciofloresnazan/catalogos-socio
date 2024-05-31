@@ -7,6 +7,7 @@ import {catalogoResponse} from '../models';
 export class DataServiceService {
 
   catalogosResponse: catalogoResponse []= [];
+  descuentos:any[]=[]
 
   constructor() { }
 }

@@ -15,5 +15,11 @@ export class ApiConectionService {
     let response: any = this._http.get(`${this.API_URL}/Catalogos`);
     return response;
   }
+  
+  getDescuentos(idCatalogo:number){
+    let response: any = this._http.get(`${this.API_URL}/Descuentos/${idCatalogo}`);
+    return response;
+  }
+
 
 }
