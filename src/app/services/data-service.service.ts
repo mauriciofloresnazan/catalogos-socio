@@ -6,6 +6,8 @@ import {catalogoResponse} from '../models';
 })
 export class DataServiceService {
 
+  MosaicLoading= false;
+
   catalogosResponse: catalogoResponse []= [];
   descuentos:any[]=[]
 

@@ -9,7 +9,7 @@ import {catalogoResponse} from '../../models';
   styleUrls: ['./mosaic.component.css']
 })
 export class MosaicComponent {
-  selectedDescuento: string | null = null;
+  selectedDescuento: any;
 
 
   constructor(
@@ -22,6 +22,7 @@ export class MosaicComponent {
   }
 
   getCatalogos() {
+    this._dataService.MosaicLoading=true;
     this._conService.getCatalogos().subscribe({
       next: (data: any) => {
         console.log("Data: ", data);
@@ -37,12 +38,16 @@ export class MosaicComponent {
       },
       complete: () => {
         console.log("Completed");
+        this._dataService.MosaicLoading=false;
       }
     });
   }
 
+  catalogoTemp: catalogoResponse = new catalogoResponse();
   descuento(catalogo: catalogoResponse) {
-    console.log(catalogo.id_catalogo);
+    this.catalogoTemp= new catalogoResponse();
+    this.catalogoTemp = catalogo;
+    console.log("Catalogo: ", this.catalogoTemp);
     this._dataService.descuentos=[];
     this._conService.getDescuentos(catalogo.id_catalogo).subscribe(
        
@@ -109,7 +114,7 @@ export class MosaicComponent {
             case 8:
               descuento= {
                 descuento: "80%",
-                val:2
+                val:8
               }
               this._dataService.descuentos.push(descuento);
 
@@ -117,7 +122,7 @@ export class MosaicComponent {
             case 9:
               descuento= {
                 descuento: "90%",
-                val:2
+                val:9
               }
               this._dataService.descuentos.push(descuento);
 
@@ -125,7 +130,7 @@ export class MosaicComponent {
             case 10:
               descuento= {
                 descuento: "100%",
-                val:2
+                val:10
               }
               this._dataService.descuentos.push(descuento);
 
@@ -161,7 +166,65 @@ export class MosaicComponent {
   }
 
   accept() {
-    console.log("opcion seleccionada: ", this.selectedDescuento);
-    console.log("datos de catalogo: ", this._dataService.descuentos);
+    let clave;
+    switch (this.selectedDescuento) {
+      case 1:
+         clave="LDE"
+
+        break;
+      case 2:
+         clave="RVD"
+
+        break;
+      case 3:
+         clave="CWS"
+
+        break;
+      case 4:
+         clave="EMC"
+
+        break;
+      case 5:
+         clave="DAF"
+
+        break;
+      case 6:
+         clave="SPK"
+
+        break;
+      case 7:
+         clave="MLV"
+
+        break;
+      case 8:
+         clave="TDX"
+
+        break;
+      case 9:
+         clave="ZKA"
+
+        break;
+      case 10:
+         clave="WGN"
+
+        break;
+      case 11:
+         clave="VPM"
+
+        break;
+      case 12:
+         clave="GBS"
+
+        break;
+      
+      default:
+        break;
+    }
+    // let url = `${this.catalogoTemp.url}/${clave}`;
+    let url = `${this.catalogoTemp.url}`;
+    console.log("Url: ", url);
+    window.location.href = url;
+    // window.location.href = this.catalogoTemp.url;
+
   }
 }

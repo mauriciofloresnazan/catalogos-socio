@@ -8,3 +8,11 @@
 .portada-cat:hover{
     border: 3px rgb(0, 0, 0) solid;
 }
+
+.modal .form-check-input {
+    color: black !important;
+  }
+  
+  .modal .form-check-label {
+    color: black !important;
+  }
